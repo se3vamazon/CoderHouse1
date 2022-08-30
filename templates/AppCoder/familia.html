@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Familiares</title>
-</head>
 
-<body>
+{% extends 'index.html' %}
+
+{% block tittle %}
+    Familia
+{% endblock %}
+
+{% block familia %}
     Familiar Numero 1: <br>
     {{familiar1.nombre}}, {{familiar1.edad}}, {{familiar1.altura}} <br>
 
@@ -13,7 +14,4 @@
 
     Familiar Numero 3: <br>
     {{familiar3.nombre}}, {{familiar3.edad}}, {{familiar3.altura}}, {{familiar3.fecha}} <br>
-    
-    
-</body>
-</html>
+{% endblock %}

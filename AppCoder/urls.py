@@ -3,7 +3,7 @@ from AppCoder.views import viewfamiliares, inicio
 
 
 urlpatterns = [
-    path('entregable/', viewfamiliares, name='AppCoderFamiliares'),
-    path('', inicio),
+    path('familiares/', viewfamiliares, name='AppCoderFamiliares'),
+    path('', inicio, name = 'Inicio'),
     
 ]
