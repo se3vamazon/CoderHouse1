@@ -18,4 +18,9 @@ def viewfamiliares(request):
         'familiar2' : familiar2,
         'familiar3' : familiar3,
     }
-    return render(request, 'familia.html', contexto)
+    return render(request, 'AppCoder/familia.html', contexto)
+
+
+def inicio(request):
+
+    return render(request, 'index.html')
