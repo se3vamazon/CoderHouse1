@@ -27,6 +27,17 @@ def inicio(request):
     return render(request, 'index.html')
 
 def formularioNombre(request):
+
+    if request.method == 'POST':
+        miFormulario = Formulario(request.POST['nombre'], request.POST['edad'])
+        
+        if miFormulario.is_valid():
+            data = miFormulario.cleaned_data
+
+            nombre1 = Familiares(nombre=data.get('nombre', dni=data.get('dni')))
+            nombre1.save()
+
+    
     
     contexto = {
         'form': Formulario()
