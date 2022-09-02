@@ -1,5 +1,6 @@
 from ast import AsyncFunctionDef
 from django.shortcuts import render
+from AppCoder.forms import Formulario
 from AppCoder.models import Familiares
 import datetime
 
@@ -24,3 +25,11 @@ def viewfamiliares(request):
 def inicio(request):
 
     return render(request, 'index.html')
+
+def formularioNombre(request):
+    
+    contexto = {
+        'form': Formulario()
+    }
+
+    return render(request, "AppCoder/formulario.html", contexto)
