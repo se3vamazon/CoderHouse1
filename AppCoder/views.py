@@ -7,9 +7,9 @@ import datetime
 # Create your views here.
 
 def viewfamiliares(request):
-    familiar1 = Familiares(nombre= 'Seba', edad = 29, altura= 1.77, fecha = datetime.datetime.now())
-    familiar2 = Familiares(nombre= 'Emma', edad = 29, altura = 1.80, fecha = datetime.datetime.now())
-    familiar3 = Familiares(nombre = 'Andy', edad =  26, altura = 1.80, fecha = datetime.datetime.now())
+    familiar1 = Familiares(nombre= 'Seba', edad = 29)
+    familiar2 = Familiares(nombre= 'Emma', edad = 29)
+    familiar3 = Familiares(nombre = 'Andy', edad =  26)
     familiar1.save()
     familiar2.save()
     familiar3.save()
@@ -29,12 +29,12 @@ def inicio(request):
 def formularioNombre(request):
 
     if request.method == 'POST':
-        miFormulario = Formulario(request.POST['nombre'], request.POST['edad'])
+        miFormulario = Formulario(request.POST)
         
         if miFormulario.is_valid():
             data = miFormulario.cleaned_data
 
-            nombre1 = Familiares(nombre=data.get('nombre', dni=data.get('dni')))
+            nombre1 = Familiares(nombre=data.get('nombre'), edad=data.get('edad'))
             nombre1.save()
 
     
