@@ -1,26 +1,18 @@
 from ast import AsyncFunctionDef
-from django.shortcuts import render
-from AppCoder.forms import Formulario
+from django.shortcuts import render, redirect
+from AppCoder.forms import BusquedaNombreForm, Formulario
 from AppCoder.models import Familiares
 import datetime
 
 # Create your views here.
 
 def viewfamiliares(request):
-    familiar1 = Familiares(nombre= 'Seba', edad = 29)
-    familiar2 = Familiares(nombre= 'Emma', edad = 29)
-    familiar3 = Familiares(nombre = 'Andy', edad =  26)
-    familiar1.save()
-    familiar2.save()
-    familiar3.save()
+    familia = Familiares.objects.all()
 
     contexto = {
-        'familiar1': familiar1,
-        'familiar2' : familiar2,
-        'familiar3' : familiar3,
+        'familia' : familia
     }
     return render(request, 'AppCoder/familia.html', contexto)
-
 
 def inicio(request):
 
@@ -37,10 +29,36 @@ def formularioNombre(request):
             nombre1 = Familiares(nombre=data.get('nombre'), edad=data.get('edad'))
             nombre1.save()
 
+            return redirect ('AppCoderFamiliares')
+
+    familia = Familiares.objects.all()
+
     
     
     contexto = {
-        'form': Formulario()
+        'form': Formulario(),
+        'familia' : familia,
     }
 
     return render(request, "AppCoder/formulario.html", contexto)
+
+def busquedaFamiliarGet(request):
+    nombre = request.GET.get('nombre')
+
+    filtrados = Familiares.objects.filter(nombre__icontains=nombre)
+
+    contexto = {
+        'nombres' : filtrados
+    }
+    
+    return render(request, "AppCoder/nombrefiltrado.html", contexto)
+
+def busquedaFamiliar(request):
+
+    contexto = {
+        'form': BusquedaNombreForm()
+    }
+
+    return render(request, "AppCoder/busqueda.html", contexto)
+
+

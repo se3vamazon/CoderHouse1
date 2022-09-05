@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block tittle %}
+    Nombre encontrado
+{% endblock %}
+
+{% block contenido %}
+    {% for nombre in filtrados %}
+    Integrante: {{nombre.nombre}} tiene una edad de {{nombre.edad}} <br>
+    {% endfor %}
+    
+
+{% endblock %}
