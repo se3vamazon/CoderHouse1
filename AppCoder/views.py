@@ -1,7 +1,7 @@
 from ast import AsyncFunctionDef
 from django.shortcuts import render, redirect
-from AppCoder.forms import BusquedaNombreForm, Formulario
-from AppCoder.models import Familiares
+from AppCoder.forms import BusquedaNombreForm, Formulario, Paciente
+from AppCoder.models import Familiares, Pacientes
 import datetime
 
 # Create your views here.
@@ -61,4 +61,24 @@ def busquedaFamiliar(request):
 
     return render(request, "AppCoder/busqueda.html", contexto)
 
+def agregaPaciente(request):
+    if request.method == 'POST':
+        miPaciente = Paciente(request.POST)
+        
+        if miPaciente.is_valid():
+            data = miPaciente.cleaned_data
+
+            nombre1 = Pacientes(nombre=data.get('nombre'), DNI=data.get('DNI'))
+            nombre1.save()
+
+            return redirect ('AgregaPaciente')
+
+    pacientes = Pacientes.objects.all() 
+    
+    contexto = {
+        'form': Paciente(),
+        'pacientes' : pacientes,
+    }
+
+    return render(request, "AppCoder/paciente.html", contexto)
 

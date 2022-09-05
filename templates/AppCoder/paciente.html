@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 
 {% block tittle %}
-    Formulario Familiar
+    Formulario Paciente
 {% endblock %}
 
 {% block contenido %}
@@ -10,5 +10,9 @@
         {{ form.as_p }}
         <input type="submit" value="Enviar">
     </form>
+
+    {% for paciente in pacientes %}
+    Paciente: {{paciente.nombre}} tiene una edad de {{paciente.DNI}} <br>
+    {% endfor %}
 
 {% endblock %}

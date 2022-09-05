@@ -7,6 +7,8 @@ urlpatterns = [
     path('', inicio, name = 'Inicio'),
     path('formulario/', formularioNombre, name = 'Formulario' ),
     path('busqueda/', busquedaFamiliar, name = 'Busqueda'),
-    path('busquedaget/', busquedaFamiliarGet, name = 'BusquedaGet')
+    path('busquedaget/', busquedaFamiliarGet, name = 'BusquedaGet'),
+
+    path('aregapaciente/', agregaPaciente, name = 'AgregaPaciente')
       
 ]
