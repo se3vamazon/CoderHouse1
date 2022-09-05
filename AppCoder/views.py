@@ -45,10 +45,10 @@ def formularioNombre(request):
 def busquedaFamiliarGet(request):
     nombre = request.GET.get('nombre')
 
-    filtrados = Familiares.objects.filter(nombre__icontains=nombre)
+    filtrados = Familiares.objects.filter(nombre__exact =nombre)
 
     contexto = {
-        'nombres' : filtrados
+        'filtrados' : filtrados
     }
     
     return render(request, "AppCoder/nombrefiltrado.html", contexto)
